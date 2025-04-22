@@ -1,17 +1,13 @@
+FROM python:3.11
 
-
-FROM python:3.9-slim-buster
-
-USER root
+# Créer un utilisateur non-root
+RUN useradd -m appuser
 
 WORKDIR /app
-
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
 
-EXPOSE 8000
+# Changer de propriétaire et utiliser l'utilisateur
+RUN chown -R appuser /app
+USER appuser
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
