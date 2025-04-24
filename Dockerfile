@@ -6,8 +6,10 @@ RUN useradd -m appuser
 WORKDIR /app
 COPY . .
 
-# Changer de propriétaire et utiliser l'utilisateur
+# Donner les droits à l'utilisateur non-root
 RUN chown -R appuser /app
+
+# Utiliser un utilisateur non-root à la fin
 USER appuser
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
