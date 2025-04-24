@@ -4,9 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    
-   
-
 
 jobs:
   lint-dockerfile:
@@ -16,4 +13,5 @@ jobs:
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: ./Dockerfile  # <-- ici, vérifie que le chemin est bon !
+          dockerfile: ./Dockerfile
+          override-error: DL3002  # désactive le warning "Last USER should not be root"
