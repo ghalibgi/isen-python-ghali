@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'sdhaihdie987392bsjdbjs')
 
 INTERNAL_APPS = [
     'django.contrib.admin',
